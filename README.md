@@ -48,8 +48,7 @@ This is a simple and interactive **Tic Tac Toe** game built using **HTML**, **CS
 
 ### **Game Preview**
 Here’s how the game looks:  
-![Game Board Preview](screenshot.png) *(Replace this with an actual screenshot if available.)*
-
+![Game Board Preview](sc.png) 
 ---
 
 ### **How to Play**
