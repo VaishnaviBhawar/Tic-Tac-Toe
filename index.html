@@ -4,82 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tic Tac Toe</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(45deg, #6dd5ed, #2193b0);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .main {
-      text-align: center;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
-    .current-player {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    .game {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      grid-gap: 10px;
-      margin: 0 auto;
-    }
-
-    .cell {
-      width: 100px;
-      height: 100px;
-      background: #fff;
-      border: 2px solid #000;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .cell:hover {
-      background: #ffdd57;
-      transform: scale(1.1);
-    }
-
-    .reset {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      color: #fff;
-      background: #ff6b6b;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    .reset:hover {
-      background: #ee5253;
-    }
-
-    img {
-      width: 80%;
-      height: auto;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="main">
@@ -99,69 +24,8 @@
     <button class="reset" onclick="resetGame()">Reset</button>
   </div>
 
-  <script>
-    let currentPlayer = 'Player 1';
-    let gameBoard = Array(9).fill(null);
+  <script src="script.js"></script>
 
-    const xImage = 'x.png';
-    const oImage = 'o.png';
-
-    function makeMove(index) {
-      const cell = document.querySelectorAll('.cell')[index];
-      if (gameBoard[index] !== null) return;
-      if (currentPlayer === 'Player 1') {
-        gameBoard[index] = 'X';
-        cell.innerHTML = `<img src="${xImage}" alt="X" />`;
-        currentPlayer = 'Player 2';
-      } else {
-        gameBoard[index] = 'O';
-        cell.innerHTML = `<img src="${oImage}" alt="O" />`;
-        currentPlayer = 'Player 1';
-      }
-      document.getElementById('current-player').textContent = `Current Player: ${currentPlayer}`;
-      checkWinner();
-    }
-
-    function checkWinner() {
-      const winningCombinations = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
-      for (const combo of winningCombinations) {
-        const [a, b, c] = combo;
-        if (
-          gameBoard[a] &&
-          gameBoard[a] === gameBoard[b] &&
-          gameBoard[a] === gameBoard[c]
-        ) {
-          setTimeout(() => {
-            const winnerImage = gameBoard[a] === 'X' ? xImage : oImage;
-            alert(`${gameBoard[a]} wins!`);
-            document.querySelectorAll('.cell')[a].innerHTML = `<img src="${winnerImage}" alt="${gameBoard[a]}" />`;
-            resetGame();
-          }, 100);
-          return;
-        }
-      }
-      if (gameBoard.every(cell => cell !== null)) {
-        setTimeout(() => alert('It\'s a draw!'), 100);
-        resetGame();
-      }
-    }
-
-    function resetGame() {
-      gameBoard.fill(null);
-      document.querySelectorAll('.cell').forEach(cell => (cell.innerHTML = ''));
-      currentPlayer = 'Player 1';
-      document.getElementById('current-player').textContent = `Current Player: ${currentPlayer}`;
-    }
-  </script>
 </body>
 </html>
 
